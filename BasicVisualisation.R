@@ -13,3 +13,23 @@ mysecondobject <- rnorm(100)
 mythirdobject = rnorm(80)
 ## The syste CASE SENSITIVE
 MyFourthObject <- rnorm(70)
+
+## 1D visualisation
+## Stem-and-leaf
+stem(a)
+## Histogram
+hist(a)
+## Bins calculated automaticly
+hist(mysecondobject)
+hist(mythirdobject)
+## You can use other function in arugment list
+hist(rnorm(1000))
+hist(rnorm(100000))
+?hist
+## Boxplot
+boxplot(a)
+boxplot(a, mysecondobject, mythirdobject, MyFourthObject)
+## QQplot
+qqnorm(a)
+qqnorm(mysecondobject)
+qqline(mysecondobject)
