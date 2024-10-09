@@ -19,6 +19,12 @@ MyFourthObject <- rnorm(70)
 stem(a)
 ## Histogram
 hist(a)
+
+## Real histogram
+hist(a, freq = FALSE)
+## Kernel smoothing model density
+lines(density(a))
+
 ## Bins calculated automaticly
 hist(mysecondobject)
 hist(mythirdobject)
