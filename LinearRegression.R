@@ -11,8 +11,12 @@ plot(mydata$varA, mydata$varB, xlab = "Variable A", ylab = "Variable B")
 write.csv(mydata, "mydata.csv")
 mydata <- read.csv("mydata.csv")
 
+## Plot with formula
+plot(varB ~ varA, data = mydata)
+
 ## lm with a simple formula B ~ A
-ABlm <- lm(B ~ A)
+ABlm <- lm(varB ~ varA, mydata)
+ABlm
 ## visualise result
 abline(ABlm)
 ## Diagnostic plot
