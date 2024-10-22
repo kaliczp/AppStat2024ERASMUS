@@ -10,6 +10,7 @@ plot(mydata$varA, mydata$varB, xlab = "Variable A", ylab = "Variable B")
 ## Export dataset
 write.csv(mydata, "mydata.csv")
 mydata <- read.csv("mydata.csv")
+summary(mydata)
 
 ## Plot with formula
 plot(varB ~ varA, data = mydata)
@@ -19,6 +20,10 @@ ABlm <- lm(varB ~ varA, mydata)
 ABlm
 ## visualise result
 abline(ABlm)
+
+## Investigations with inferential stats
+summary(ABlm)
+
 ## Diagnostic plot
 plot(ABlm)
 ## prediction?
