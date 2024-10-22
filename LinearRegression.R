@@ -7,6 +7,11 @@ str(mydata)
 
 plot(mydata$varA, mydata$varB, xlab = "Variable A", ylab = "Variable B")
 
+## Save plot in a jpg file
+png("Scatterplot.png")
+plot(mydata$varA, mydata$varB, xlab = "Variable A", ylab = "Variable B")
+dev.off()
+
 ## Export dataset
 write.csv(mydata, "mydata.csv")
 mydata <- read.csv("mydata.csv")
