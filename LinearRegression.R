@@ -26,4 +26,6 @@ summary(ABlm)
 
 ## Diagnostic plot
 plot(ABlm)
+## Select first plot lack of fit
+plot(ABlm, 1)
 ## prediction?
