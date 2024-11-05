@@ -43,3 +43,8 @@ mypred <- predict(ABlm, new = data.frame(varA = mypred))
 plot(varB ~ varA, data = mydata, xlim = c(0,70), ylim = c(0,180))
 points(myquest, mypred, lwd = 2, col = "red")
 
+## Save plot in a high resolution png file
+png("Scatterplot.png", width = 15 , height = 15, unit = "cm", res = 600)
+plot(mydata$varA, mydata$varB, xlab = "Variable A", ylab = "Variable B")
+abline(ABlm)
+dev.off()
