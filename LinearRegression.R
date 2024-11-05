@@ -34,3 +34,12 @@ plot(ABlm)
 ## Select first plot lack of fit
 plot(ABlm, 1)
 ## prediction?
+mypred <- predict(ABlm, new = data.frame(varA = 20))
+points(20, mypred, lwd = 2, col = "red")
+
+## Visualisation outside of domain
+myquest = 60:70
+mypred <- predict(ABlm, new = data.frame(varA = mypred))
+plot(varB ~ varA, data = mydata, xlim = c(0,70), ylim = c(0,180))
+points(myquest, mypred, lwd = 2, col = "red")
+
