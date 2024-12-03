@@ -16,3 +16,11 @@ plot(tempDate, temp$ta, type = "l", xaxs = "i", xaxt = "n", xlab = "", ylab = "T
 as.Date("1870-01-01") + c(0,365, 2:5*365) # wrong because leap year
 beginyear <- as.Date(paste0(1870:2023, "-01-01"))
 axis.Date(side = 1, at = beginyear)
+## Package for time-series work
+library(xts)
+tempxts <- xts(temp$ta, tempDate)
+plot(tempxts)
+## Select time
+plot(tempxts['2023'])
+plot(tempxts['2020/2023'])
+plot(tempxts['2022-11-01/2023-10-31'], col = "red")
