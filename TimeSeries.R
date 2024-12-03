@@ -24,3 +24,31 @@ plot(tempxts)
 plot(tempxts['2023'])
 plot(tempxts['2020/2023'])
 plot(tempxts['2022-11-01/2023-10-31'], col = "red")
+## yearly mean
+yearlytemp <- apply.yearly(tempxts, mean)
+plot(yearlytemp)
+## Get the linear trend
+yearlytemp.df <- data.frame(Date = index(yearlytemp),
+                            Temp = coredata(yearlytemp))
+yearlytemp.lm <- lm(Temp ~ Date, yearlytemp.df)
+summary(yearlytemp.lm)
+## Look the result
+plot(yearlytemp.df, type = "l", xaxs = "i")
+abline(yearlytemp.lm, lwd = 2)
+## Moving average with basic r ts
+temp.ts <- ts(yearlytemp.df$Temp, 1870)
+plot(temp.ts, ylab = "Temperature")
+temp3yr <- filter(temp.ts, c(1/3, 1/3, 1/3))
+lines(temp3yr, col = "red")
+temp5yr <- filter(temp.ts, c(1/5, 1/5, 1/5, 1/5, 1/5))
+temp5yr <- filter(temp.ts, rep(1/5,5))
+lines(temp5yr, col = "blue")
+temp9yr <- filter(temp.ts, rep(1/9, 9))
+lines(temp9yr, col = "orange", lwd = 3)
+## Moving average for the original data
+orits <- ts(temp$ta)
+temp365days <- filter(orits, rep(1/365, 365))
+plot(orits)
+lines(temp365days, col="orange")
+temp2yrs <- filter(orits, rep(1/(365*2), 2*365))
+lines(temp2yrs, col="red", lwd = 2)
