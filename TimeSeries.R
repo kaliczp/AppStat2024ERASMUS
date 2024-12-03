@@ -30,11 +30,18 @@ plot(yearlytemp)
 ## Get the linear trend
 yearlytemp.df <- data.frame(Date = index(yearlytemp),
                             Temp = coredata(yearlytemp))
+yearlytemp.df$numericDate <- as.numeric(format(yearlytemp.df$Date, format = "%Y"))
 yearlytemp.lm <- lm(Temp ~ Date, yearlytemp.df)
 summary(yearlytemp.lm)
+plot(yearlytemp.lm,1)
+## Get quadratic trend for PhD
+yearlytemppoly1.lm <- lm(Temp ~ numericDate + I(numericDate^2), yearlytemp.df)
+summary(yearlytemppoly1.lm)
+plot(yearlytemppoly1.lm,1)
 ## Look the result
-plot(yearlytemp.df, type = "l", xaxs = "i")
+plot(yearlytemp.df[,c("Date","Temp")], type = "l", xaxs = "i")
 abline(yearlytemp.lm, lwd = 2)
+lines(yearlytemp.df[,"Date"],predict(yearlytemppoly1.lm), col = "red")
 ## Moving average with basic r ts
 temp.ts <- ts(yearlytemp.df$Temp, 1870)
 plot(temp.ts, ylab = "Temperature")
